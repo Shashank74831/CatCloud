@@ -1,155 +1,458 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+/* =================================
+   1. GLOBAL STYLES
+================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #fff0f5, #f1eaff, #e8f5ff);
-    min-height: 100vh;
-    color: #44334f;
+html {
+    scroll-behavior: smooth;
 }
 
-/* Header */
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    color: #254c42;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 10% 15%, rgba(134, 239, 172, 0.35), transparent 35%),
+        radial-gradient(circle at 90% 20%, rgba(94, 234, 212, 0.3), transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(167, 243, 208, 0.4), transparent 40%),
+        linear-gradient(135deg, #f0fff7, #e5faf0, #f4fffb);
+
+    background-size: 150% 150%;
+    animation: backgroundMove 16s ease infinite alternate;
+}
+
+@keyframes backgroundMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* =================================
+   2. HEADER
+================================= */
 
 header {
     text-align: center;
-    padding: 35px 20px;
+    padding: 55px 20px 35px;
+    animation: fadeDown 1s ease both;
 }
 
 header h1 {
-    font-size: 42px;
+    font-size: clamp(38px, 6vw, 58px);
     font-weight: 800;
-    color: #b46ac9;
+    letter-spacing: -2px;
+
+    background: linear-gradient(
+        110deg,
+        #047857,
+        #34b58b,
+        #0f766e,
+        #047857
+    );
+
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    animation: titleShine 6s linear infinite;
+}
+
+@keyframes titleShine {
+    to { background-position: 200% center; }
 }
 
 header p {
-    color: #8c759b;
+    color: #648b7d;
     font-size: 15px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
 }
 
-/* Main Section */
+/* =================================
+   3. MAIN SECTION
+================================= */
 
 main {
-    max-width: 900px;
+    max-width: 1050px;
     margin: auto;
     padding: 20px;
 }
 
 .cat-container {
     text-align: center;
+    animation: fadeUp 1s ease both;
 }
 
 .cat-container h2,
 .favorites-section h2 {
-    font-size: 24px;
-    margin-bottom: 25px;
+    font-size: clamp(21px, 4vw, 28px);
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: #285c4d;
 }
 
-/* Cat Card */
+/* =================================
+   4. GLASSMORPHISM CAT CARD
+================================= */
 
 .cat-card {
-    background: white;
+    position: relative;
+    isolation: isolate;
     width: 100%;
-    max-width: 450px;
+    max-width: 470px;
     margin: auto;
-    padding: 20px;
-    border-radius: 25px;
-    box-shadow: 0 10px 35px rgba(150, 100, 170, 0.15);
+    padding: 22px;
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.42);
+
+    backdrop-filter: blur(28px) saturate(155%);
+    -webkit-backdrop-filter: blur(28px) saturate(155%);
+
+    border: 1px solid rgba(255, 255, 255, 0.85);
+
+    box-shadow:
+        0 20px 60px rgba(45, 125, 95, 0.13),
+        0 5px 20px rgba(16, 185, 129, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    animation: cardFloat 5s ease-in-out infinite;
+
+    transition:
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
 }
+
+.cat-card:hover {
+    box-shadow:
+        0 30px 75px rgba(45, 125, 95, 0.2),
+        0 0 35px rgba(52, 211, 153, 0.15),
+        inset 0 1px 0 #ffffff;
+
+    border-color: #ffffff;
+}
+
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* =================================
+   5. CAT IMAGE
+================================= */
 
 #catImage {
     width: 100%;
-    height: 300px;
+    height: 320px;
     object-fit: cover;
-    border-radius: 18px;
     display: block;
+    border-radius: 22px;
+
+    border: 3px solid rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 8px 25px rgba(45, 125, 95, 0.15);
+
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
 }
 
-/* Buttons */
+#catImage:hover {
+    transform: scale(1.025);
+    filter: saturate(1.12);
+}
+
+/* =================================
+   6. BUTTONS
+================================= */
 
 .buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 12px;
+    margin-top: 22px;
 }
 
 button {
-    border: none;
-    padding: 12px 17px;
-    border-radius: 12px;
-    background: #eac8f5;
-    color: #623d75;
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    padding: 12px 19px;
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(209, 250, 229, 0.95),
+        rgba(167, 243, 208, 0.95)
+    );
+
+    color: #17634b;
     font-family: inherit;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
+
+    box-shadow:
+        0 5px 15px rgba(16, 185, 129, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background: #c98cde;
-    color: white;
-    transform: translateY(-3px);
+    transform: translateY(-4px) scale(1.04);
+
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #34b58b,
+        #0f9f78
+    );
+
+    box-shadow:
+        0 10px 25px rgba(16, 185, 129, 0.28);
 }
+
+button:active {
+    transform: scale(0.96);
+}
+
+button:focus-visible {
+    outline: 3px solid #34b58b;
+    outline-offset: 3px;
+}
+
+/* =================================
+   7. MESSAGE
+================================= */
 
 #message {
-    margin: 20px;
-    color: #8c759b;
+    margin: 22px 10px 5px;
+    color: #648b7d;
+    font-size: 14px;
+    font-weight: 500;
+    animation: fadeUp 0.5s ease both;
 }
 
-/* Favourites */
+/* =================================
+   8. FAVORITES SECTION
+================================= */
 
 .favorites-section {
-    margin-top: 65px;
+    margin-top: 85px;
+    padding: 35px 20px;
     text-align: center;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, 0.32);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 12px 40px rgba(45, 125, 95, 0.09),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 #favoritesContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .favorite-cat {
-    width: 150px;
-    height: 150px;
+    width: 155px;
+    height: 155px;
     object-fit: cover;
-    border-radius: 18px;
-    box-shadow: 0 5px 15px rgba(150, 100, 170, 0.15);
+    border-radius: 20px;
+
+    border: 3px solid rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 8px 22px rgba(45, 125, 95, 0.16);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+
+    animation: fadeUp 0.6s ease both;
 }
 
-/* Footer */
+.favorite-cat:hover {
+    transform: translateY(-8px) scale(1.06) rotate(2deg);
+
+    box-shadow:
+        0 15px 30px rgba(45, 125, 95, 0.23);
+}
+
+/* =================================
+   9. FOOTER
+================================= */
 
 footer {
     text-align: center;
-    padding: 30px 15px;
-    color: #947ca0;
+    padding: 40px 15px;
+    color: #648b7d;
     font-size: 13px;
 }
 
-/* Mobile Responsive */
+/* =================================
+   10. ANIMATIONS
+================================= */
 
-@media (max-width: 500px) {
-    header h1 {
-        font-size: 34px;
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
     }
 
-    .cat-container h2 {
-        font-size: 20px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =================================
+   11. SCROLLBAR
+================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #effcf5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        #6ee7b7,
+        #34b58b
+    );
+
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #059669;
+}
+
+/* =================================
+   12. TEXT SELECTION
+================================= */
+
+::selection {
+    background: #a7f3d0;
+    color: #14532d;
+}
+
+/* =================================
+   13. RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 40px 15px 25px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .cat-card {
+        max-width: 420px;
+        padding: 15px;
+        border-radius: 24px;
     }
 
     #catImage {
-        height: 250px;
+        height: 270px;
+        border-radius: 18px;
+    }
+
+    .favorites-section {
+        margin-top: 55px;
+        padding: 25px 12px;
+    }
+
+    .favorite-cat {
+        width: 125px;
+        height: 125px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    header h1 {
+        font-size: 36px;
+    }
+
+    header p {
+        font-size: 13px;
+    }
+
+    #catImage {
+        height: 235px;
+    }
+
+    .buttons {
+        gap: 9px;
     }
 
     button {
+        padding: 10px 13px;
         font-size: 12px;
-        padding: 10px;
+    }
+
+    .favorite-cat {
+        width: 105px;
+        height: 105px;
+    }
+}
+
+/* =================================
+   14. ACCESSIBILITY
+================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
     }
 }
